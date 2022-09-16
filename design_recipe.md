@@ -2,27 +2,34 @@
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+> As a user  
+> So that I can keep track of my tasks  
+> I want a program that I can add todo tasks to and see a list of them.
+
+> As a user  
+> So that I can focus on tasks to complete  
+> I want to mark tasks as complete and have them disappear from the list.
 
 ## 2. Design the Class Interface
-
-_Include the initializer and public methods with all parameters and return values._
 
 ```ruby
 # EXAMPLE
 
-class Reminder
-  def initialize(name) # name is a string
-    # ...
+class TaskManager
+  def initialize
+    @tasks = []
   end
 
-  def remind_me_to(task) # task is a string
+  def create(task) # task is a string
     # No return value
   end
 
-  def remind()
-    # Throws an exception if no task is set
-    # Otherwise, returns a string reminding the user to do the task
+  def complete(task) # task is a string
+    # Returns nothing
+  end
+
+  def view
+    # Returns the task array
   end
 end
 ```
@@ -35,18 +42,22 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 # 1
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+task_manager = TaskManager.new
+task_manager.create('task 1')
+task_manager.view # Returns "task 1"
 
 # 2
-reminder = Reminder("Kay")
-reminder.remind() # fails with "No task set."
+task_manager = TaskManager.new
+task_manager.create('task 1')
+task_manager.create('task 2')
+task_manager.view #Returns "task 1" "task 2"
 
 # 3
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+task_manager = TaskManager.new
+task_manager.create('task 1')
+task_manager.create('task 2')
+task_manager.complete('task 1')
+task_manager.view #Returns "task 2"
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
